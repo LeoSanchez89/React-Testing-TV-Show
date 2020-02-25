@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Dropdown from "react-dropdown";
 import parse from "html-react-parser";
 
@@ -16,7 +15,7 @@ export default function App() {
 	const episodes = seasons[selectedSeason] || [];
 
 	useEffect(() => {
-		// removed api call into fetchShow.js
+		// moved api call into fetchShow.js
 		fetchShow().then(res => {
 			setShow(res.data);
 			setSeasons(formatSeasons(res.data._embedded.episodes));
