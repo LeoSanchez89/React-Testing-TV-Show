@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 
 export default function Episodes(props) {
   return (
-		<div className="episodes">
+		<div className="episodes" data-testid="ep-container">
 			{props.episodes.map(e => (
 				<div className="episode" key={e.id} data-testid="episode-data">
 					{e.image && (

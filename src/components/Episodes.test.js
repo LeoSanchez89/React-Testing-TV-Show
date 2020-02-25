@@ -1,5 +1,5 @@
 import React from "react";
-import { render, rerender } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import Episodes from "./Episodes";
 
@@ -650,14 +650,21 @@ const show = [
 	}
 ];
 
-test("Episode shows season data and renders cards", () => {
-	const { queryAllByTestId, getByText, getByTestId, rerender } = render(
-		<Episodes episodes={[]} />
-	);
+test("Episode shows episode data and renders cards", () => {
 
+	const { queryAllByTestId, getByTestId, rerender } = render(
+		<Episodes episodes={[]} />
+    );
+    
+    getByTestId("ep-container");
+    
+    expect(queryAllByTestId("episode-data")).toBeEmpty;
     expect(queryAllByTestId("episode-data")).toHaveLength(0);
     
     rerender(<Episodes episodes={show} />);
-
+   
+    expect(queryAllByTestId("episode-data")).not.toBeEmpty;
     expect(queryAllByTestId("episode-data")).toHaveLength(26);
+
+    expect(queryAllByTestId("episode-data")).toBeInTheDocument;
 });

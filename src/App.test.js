@@ -720,5 +720,6 @@ test("App fetches show data and render data", async () => {
 		getByText(/season 2/i);
 		getByText(/season 3/i);
 		getByText(/season 4/i);
-	});
+    });
+    
 });
