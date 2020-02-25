@@ -1,6 +1,6 @@
 import React from "react";
-import { render, fireEvent, rerender, wait } from "@testing-library/react";
-import  userEvent from "@testing-library/user-event";
+import { render, wait } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import { fetchShow as mockFetchShow } from "./api/fetchShow";
 import App from "./App";
@@ -709,12 +709,16 @@ const show = {
 
 test("App fetches show data and render data", async () => {
 	mockFetchShow.mockResolvedValueOnce(show);
-	const { getByText, queryAllByTestId, getByTestId } = render(<App />);
+	const { getByText } = render(<App />);
+
+	getByText(/Fetching data.../i);
 
 	await wait(() => {
-		userEvent.click(getByText(/select a season/i));
-		getByText(/season 1/i);
-    });
-    
-    
+		
+        userEvent.click(getByText(/select a season/i));
+        getByText(/season 1/i);
+		getByText(/season 2/i);
+		getByText(/season 3/i);
+		getByText(/season 4/i);
+	});
 });
